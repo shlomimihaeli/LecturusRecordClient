@@ -1,0 +1,853 @@
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-1-g3306474
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' 'host_alias=i686-w64-mingw32'
+core debug: using interface module "logger"
+core debug: adding item `dshow://' ( dshow:// )
+ccoroer debeug d:e blougoki:ng for  intmerfacee mota dule matochik ng "for h(notukeys,nonlle),":  ne1ed6 t canod idafetestch art
+
+core debug: using interface module "hotkeys"
+core debug: looking for meta fetchercore  debug: module maltooking ching "for ainterfaceny "mo: dule matchi1ng  ca"ndidatglobalhesotkeys,none
+": 16 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: no meta fetcher modules matched
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLcCo\lreua\ debumget:a\art\0 2_freusinng chtvinte.luacrface 
+module "win32"
+core: Running vlc with the default interface. Use 'cvlc' to use vlc without interface.
+core debug:l ual dooebugking:  fskipping scor ript (unmatichntered sfcopae) cec module: mat\chingP r"oanyg": ram Files (x86)16\Vide candidatesoLAN\V
+LC\lua\meta\art\02_frenchtv.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+core debug: no art finder modules matched
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: using meta fetcher module "lua"
+core debug: removing module "lua"
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\02_frenchtv.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+core debug: no art finder modules matched
+core debug: art not found for dshow://
+core debug: looking for extension module matching "any": 1 candidates
+lua debug: Opening Lua Extension module
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\extensions
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\extensions
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\extensions\VLSub.luac
+lua debug: Scanning Lua script c:\Program Files (x86)\VideoLAN\VLC\lua\extensions\VLSub.luac
+lua debug: Script c:\Program Files (x86)\VideoLAN\VLC\lua\extensions\VLSub.luac has the following capability flags: 0x5
+core debug: using extension module "lua"
+core debug: using interface module "qt4"
+core debug: processing request item: null, node: Playlist, skip: 0
+core debug: rebuilding array of current - root Playlist
+core debug: rebuild done - 1 items, index -1
+core debug: starting playback of the new playlist item
+core debug: resyncing on dshow://
+core debug: dshow:// is at 0
+core debug: creating new input thread
+core debug: Creating an input for 'dshow://'
+core debug: requesting art for dshow://
+ccoorer debuge:  debuglo:o king for umetsia fetcher module matching "nanyg":  sout chain=`1transcode{v codec=mp2v,vb=1024,fps=30,width=320,acandidatecso
+dec=mp2a,ab=128,scale=1,channels=2,deinterlace,audio-sync}:standard{access=file,mux=ps,dst=C:\Users\slhnizle\Docuuments/aLecturus\O utdebugput.mpg}:' 
+Trying Lua scripts in cC:\Users\shnizle\AppDoata\Roaming\vrelc\lua\meta\fetcher deb
+ug: stream=`standard'
+lua debug: Trying Lua scripts in cc:\Program Files (x86)\VideoLAN\VLC\luoa\meta\fetcherre
+ debug: looking for sout stream module matching "luastandard":  debug2:2  candidatesT
+rying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: set config option: sout-standard-access to file
+core debug: set config option: sout-standard-mux to ps
+lcoreua debug:  debuset confg: ig option: skipping script (unmsout-satched scotandard-dst to pe) C:\Users\shnizle\Documents/Lecturus\Ouct:\Proput.mpggram Files (x86)\VideoLAN\V
+LC\lua\meta\fetcher\tvrage.lcoreuac de
+bug: looking for sout access module matching "cfile": ore8 candidates 
+debug: no meta fetcher modules matched
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidatesa
+ccess_output_file debug: file access output opened (C:\Users\shnizle\Documents/Lecturus\Output.mpgl)ua
+ debugc:or eT rydiebng Lua scrugipts:  inusin gC :\Usesout rs\saccehssnizle\AppData\R moduloamien g\vlc"\access_output_filleua\met"a\art
+
+cloreu daebug d: ebugl: ooking for Trying Lua scripts ins out mux module matching "cps": :\Program Files (x86)\VideoLAN\VLC\lua\meta\art1
+0 candidates
+lua debug: Trying Lua playlist script c:\Program Files (x86m)\VideoLAN\VLC\lua\meta\art\00_muux_pssicbrainz.luac: Open
+core debug: us
+ing sout mux module "mux_ps"
+core debug: muxer support adding stream at any time
+core debug: muxer prefers to wait for all ES before starting to mux
+stream_out_standard debug: using `file/ps://C:\Users\shnizle\Documents/Lecturus\Output.mpg'
+core debug: using sout stream module "stream_out_standard"
+core debug: stream=`transcode'
+core debug: looking for sout stream module matching "transcode": 22 candidates
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+corleu adebug:  debug: set confTirying Lua plagylist opti son: cript sout-transcodec:\Progr-am Filvecos (x86d)\VeidecoLAN\V to LmC\lpua\meta\art2\v01_goo
+gleimage.luac
+core debug: set config option: sout-transcode-vb to 1024
+core debug: set config option: sout-transcode-fps to 30
+core debug: set config option: sout-transcode-width to 320
+core debug: set config option: sout-transcode-acodec to mp2a
+lcuorea  debug: debug: sskipping sceript (unmatchedt s config opction: osout-tranpes) cco:\Prdeogr-aba mto  1Files (2x868)
+\VideoLAN\VLC\lua\meta\artc\01_googloreeimage. debluacug
+: set config option: sout-translcoduae-scale to debug : 1T
+rying Lua plcoreayl diesbugt script :c: \Prsoegrat m coFnfiilegs  o(px86ti)\Von: isout-tderansoLAN\code-channels to V2LC
+\lua\meta\artcore\ debug: 02_frenchtv.set config option: luacsout-t
+ranscode-deinterlace to (null)
+core warning: option audio-sync is unknown
+stream_out_transcode debug: Checking codec mapping for mp2a got mpga 
+stream_out_transcode debug: codec audio=mpga l0Hz ua2 chan debug:nels  skipping script (unmatched scope) 1c:\Program File28s (x86)\VideoLAN\Kb/sVLC\lua\meta\art\02_
+frenchtv.luac
+stream_out_transcode debug: luaChe cdebug: kingT video coderying Lua playlist script cc:\Program Fil es m(x86)\VideoLAapN\VLC\luaping for \mp2metav\ gaort\t 03_lastmp2vfm. luac
+
+stream_out_transcode debug: codec video=mp2v 320x0 scaling:q t41 debug: .000000IM: Setting an inpu t1024kb/s
+
+core debug: using lsuaout s debtream moduuleg ": stream_outski_transcodepping script (unmatch"ed scope) 
+c:\Program Files (x86)\VidceoLAN\VLC\lua\meta\aore debug: using timeshift granularity of 50 MiB, in path 'C:\Users\shnizle\AppData\Local\Temrpt'\
+03_lastfm.luac
+core debug: `dshow://' gives access `codrsheow de'bug d: eno maurt x `find'er  modulpeats h `mat'ched
+
+ccoreo debugre: de blug: ospeokicng ified for demmetaux  f`etcaherny' 
+module matching "ancorey" : deb1ug:  creating decmux: aandidatcceesss='
+dshow' demux='any' location='' file='(null)'
+core debug: looking for access_demux module matching "dshowlua d"e:bug : 12Tryin gcandidates Lu
+a scripts in C:\Users\shnizle\dAppsDahowta\Roaming\vlc\l debug: ua\meta\fetcherdshow
+-vdev: 
+dshow debug: dsholuw-aa debdugev: :
+ Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: using meta fetcher module "lua"
+core debug: removing module "lua"
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\02_frenchtv.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+core debug: no art finder modules matched
+core debug: art not found for dshow://
+dshow debug: found device: TOSHIBA Web Camera - HD
+dshow debug: asking for default device: TOSHIBA Web Camera - HD
+dshow debug: asked for TOSHIBA Web Camera - HD, binding to TOSHIBA Web Camera - HD
+dshow debug: using device: TOSHIBA Web Camera - HD
+dshow debug: EnumDeviceCaps: output pin: Capture
+dshow debug: EnumDeviceCaps: input pin: Video Camera Terminal
+dshow debug: EnumDeviceCaps: trying pin Capture
+dshow debug: EnumDeviceCaps: input pin default format configured
+dshow debug: EnumDeviceCaps: input pin accepts chroma: YUY2, width:1280, height:720, fps:10.000000
+filter debug: CaptureFilter::JoinFilterGraph
+dshow debug: connecting filters
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [not connected]
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryAccept [OK] (width=1280, height=720, chroma=YUY2, fps=10.000000)
+filter debug: CapturePin::ReceiveConnection [OK]
+filter debug: CapturePin::NotifyAllocator
+dshow debug: ConnectFilters: graph_builder2 available.
+dshow warning: ConnectFilters: No crossBar routes found (incompatible pin types)
+dshow debug: filters connected successfully !
+dshow debug: MEDIATYPE_Video
+dshow debug: selected video pin accepts format: YUY2
+dshow debug: found device: Headset (Nokia BH-503 Hands-Free)
+dshow debug: found device: Microphone Array (Conexant SmartAudio HD)
+dshow debug: asking for default device: Headset (Nokia BH-503 Hands-Free)
+dshow debug: asked for Headset (Nokia BH-503 Hands-Free), binding to Headset (Nokia BH-503 Hands-Free)
+dshow debug: using device: Headset (Nokia BH-503 Hands-Free)
+dshow debug: EnumDeviceCaps: output pin: Capture
+dshow debug: EnumDeviceCaps: input pin: Master Volume
+dshow debug: EnumDeviceCaps: trying pin Capture
+dshow debug: EnumDeviceCaps: input pin default format configured
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:44100 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:44100 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:44100 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:32000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:32000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:22050 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:22050 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:11025 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:11025 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:8000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:8000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:44100 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:44100 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:22050 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:22050 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:11025 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:11025 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:8000 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:8000 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:48000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:48000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:96000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:96000 bits/sample:16
+filter debug: CaptureFilter::JoinFilterGraph
+dshow debug: connecting filters
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [not connected]
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryAccept [OK] (channels=2, samples/sec=44100, bits/samples=16, format=araw)
+filter debug: CapturePin::ReceiveConnection [OK]
+filter debug: CapturePin::NotifyAllocator
+dshow debug: filters connected successfully !
+dshow debug: MEDIATYPE_Audio
+dshow debug: selected audio pin accepts format: araw
+dshow debug: Playing...
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CaptureFilter::Run
+filter debug: CaptureFilter::Run
+core debug: selecting program id=0
+core debug: using access_demux module "dshow"
+core debug: looking for packetizer module matching "any": 23 candidates
+core debug: using packetizer module "rawvideo"
+core debug: looking for packetizer module matching "any": 23 candidates
+core debug: using packetizer module "packetizer_copy"
+core debug: starting in sync mode
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\reader
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\reader\filename.luac
+core debug: no meta reader modules matched
+core debug: `dshow://' successfully opened
+core debug: Buffering 0%
+core debug: switching to async mode
+core debug: adding a new sout input (sout_input:03cd7d60)
+stream_out_transcode debug: creating video transcoding from fcc=`YUY2' to fcc=`mp2v'
+core debug: looking for decoder module matching "any": 43 candidates
+core debug: using decoder module "rawvideo"
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 1/1000000
+avcodec debug: Time base set to 1/240
+avcodec debug: rc buffer size 4096000 bits
+avcodec debug: found encoder MPEG-2 Video
+core debug: using encoder module "avcodec"
+core debug: removing module "avcodec"
+packetizer_copy debug: need valid dts
+core debug: Buffering 33%
+core debug: Buffering 14%
+core debug: Buffering 66%
+core debug: Buffering 51%
+core debug: adding a new sout input (sout_input:03c55100)
+stream_out_transcode debug: creating audio transcoding from fcc=`s16l' to fcc=`mpga'
+core debug: looking for decoder module matching "any": 43 candidates
+araw debug: samplerate:44100Hz channels:2 bits/sample:16
+core debug: using decoder module "araw"
+core debug: looking for encoder module matching "any": 21 candidates
+core debug: using encoder module "twolame"
+core debug: input 's16l' 44100 Hz Stereo frame=1 samples/4 bytes
+core debug: conversion: 's16l'->'s16l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "ugly_resampler"
+core debug: adding a new input
+mux_ps debug: adding input codec=mpga
+core debug: removing module "twolame"
+core debug: removing module "ugly_resampler"
+core debug: Buffering 100%
+core debug: Buffering 91%
+core debug: Stream buffering done (400 ms in 400 ms)
+core debug: Decoder wait done in 0 ms
+core debug: looking for video filter2 module matching "deinterlace": 58 candidates
+deinterlace debug: using blend deinterlace method
+deinterlace debug: deinterlacing
+core debug: using video filter2 module "deinterlace"
+core debug: Filter 'deinterlace' (03ce0464) appended to chain
+stream_out_transcode debug: decoder aspect is 1.333333:1
+stream_out_transcode debug: source pixel aspect is 0.750000:1
+stream_out_transcode debug: scaled pixel aspect is 0.750000:1
+stream_out_transcode debug: source 1280x720, destination 320x180
+stream_out_transcode debug: source fps 10/1, destination 30/1
+stream_out_transcode: input interval 100000 (base 1)
+stream_out_transcode: output interval 33333 (base 1)
+stream_out_transcode debug: encoder aspect is 960:720
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 1280x720 (1280x720) chroma: YUY2 -> 320x180 (320x180) chroma: I420 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (02c772d4) appended to chain
+stream_out_transcode debug: destination (after video filters) 320x180
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 1/30
+avcodec debug: Time base set to 1/30
+avcodec debug: rc buffer size 4096000 bits
+avcodec debug: found encoder MPEG-2 Video
+core debug: using encoder module "avcodec"
+core debug: adding a new input
+mux_ps debug: adding input codec=mp2v
+core debug: looking for encoder module matching "any": 21 candidates
+core debug: using encoder module "twolame"
+core debug: input 's16l' 44100 Hz Stereo frame=1 samples/4 bytes
+core debug: conversion: 's16l'->'s16l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "ugly_resampler"
+stream_out_transcode warning: Reseting video sync
+stream_out_transcode debug: audio drift is too high (-110372), resetting master sync
+stream_out_transcode debug: audio drift is too high (101630), resetting master sync
+stream_out_transcode warning: Reseting video sync
+stream_out_transcode warning: Reseting video sync
+stream_out_transcode debug: audio drift is too high (-102793), resetting master sync
+stream_out_transcode debug: audio drift is too high (102126), resetting master sync
+stream_out_transcode warning: Reseting video sync
+stream_out_transcode warning: Reseting video sync
+stream_out_transcode debug: audio drift is too high (-102008), resetting master sync
+stream_out_transcode debug: audio drift is too high (101963), resetting master sync
+core debug: incoming request - stopping current input
+core debug: control: stopping input
+core debug: incoming request - stopping current input
+core debug: finished input
+core debug: removing module "rawvideo"
+core debug: killing decoder fourcc `YUY2', 0 PES in FIFO
+core debug: removing a sout input (sout_input:03cd7d60)
+core debug: removing module "rawvideo"
+core debug: removing module "avcodec"
+core debug: Filter 03ce0464 removed from chain
+core debug: removing module "deinterlace"
+core debug: Filter 02c772d4 removed from chain
+core debug: removing module "swscale"
+mux_ps debug: removing input
+core debug: removing module "packetizer_copy"
+core debug: killing decoder fourcc `s16l', 0 PES in FIFO
+core debug: removing a sout input (sout_input:03c55100)
+core debug: removing module "araw"
+core debug: removing module "twolame"
+core debug: removing module "ugly_resampler"
+mux_ps debug: removing input
+core warning: no more input streams for this mux
+core debug: removing module "dshow"
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::Stop
+filter debug: CapturePin::EndFlush
+filter debug: CaptureFilter::Stop
+filter debug: CapturePin::EndFlush
+dshow debug: releasing DirectShow
+dshow debug: DeleteDirectShowGraph: Removing filters
+dshow debug: DeleteDirectShowGraph: Removing capture filter
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CapturePin::Disconnect [OK]
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::JoinFilterGraph
+filter debug: CaptureFilter::GetState 0
+dshow debug: DeleteDirectShowGraph: Removing device filter
+dshow debug: DeleteDirectShowGraph: Removing capture filter
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CapturePin::Disconnect [OK]
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::JoinFilterGraph
+filter debug: CaptureFilter::GetState 0
+dshow debug: DeleteDirectShowGraph: Removing device filter
+core debug: Program doesn't contain anymore ES
+core debug: incoming request - stopping current input
+core debug: dead input
+core debug: destroying useless sout
+core debug: destroying chain... (name=transcode)
+core debug: removing module "stream_out_transcode"
+core debug: destroying chain done
+core debug: destroying chain... (name=standard)
+core debug: removing module "stream_out_standard"
+core debug: removing module "mux_ps"
+mux_ps: Close
+core debug: removing module "access_output_file"
+access_output_file debug: file access output closed
+core debug: destroying chain done
+qt4 debug: IM: Deleting the input
+core debug: exiting
+core debug: removing all interfaces
+core debug: exiting
+core debug: no exit handler
+core debug: removing module "qt4"
+core debug: deactivating the playlist
+core debug: removing module "directsound"
+qt4 debug: requesting exit...
+qt4 debug: waiting for UI threqad...
+t4 debug: QApp exec() finished
+qt4 debug: Video is not needed anymore
+qt4 debug: Killing extension dialog provider
+qt4 debug: ExtensionsDialogProvider is quitting...
+core debug: removing module "lua"
+lua debug: Deactivating all loaded extensions
+lua debug: All extensions are now deactivated
+core debug: removing module "win32"
+core debug: removing module "hotkeys"
+core debug: removing module "logger"
+-- logger module stopped --
+﻿-- logger module started --
+core debug: VLC media player - 2.2.2 Weatherwax
+core debug: Copyright © 1996-2016 the VideoLAN team
+core debug: revision 2.2.2-1-g3306474
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' 'host_alias=i686-w64-mingw32'
+core debug: using interface module "logger"
+core debug: adding item `dshow://' ( dshow:// )
+core debug: cmoreeta ok debug: for  (lnull),o oneekding for  to fetch iartn
+terface module matching "hotkeys,none": 16 candidatescore
+ debug: looking for meta fetcher module matching "any": 1 candidates
+core debug: using interface module "luahotkeys" debug: 
+Trying Lua scripts in C:\Users\shnizle\AppData\Roacoreming\vlc\ debug: lua\looking for meta\feinterface module matching "globalhotkeys,none"t: che16 candidatesr
+
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: no meta fetcher modules matched
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\02_frenchtv.luac
+lua debug: skipping script (unmatched scope) c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\02_frenchtv.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+lua debug:core  skidepping scriptb (unmaugtched scope) : c:\Program Fileusings  (xinterface86 )\VideoLAN\VLCm\lua\ometadule "\wain32"r
+t\03_lastfm.luac
+core: Running vlc with tcorehe default  indebutgerface. Use 'cvlc':  to use vlc without no inart terface.f
+inder modules matched
+corec debug: orelooking for  debug: meta fetlcher module matchiong "oking for ainterfaceny":  module matching "1any":  ca16ndi cadatndidateses
+
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: using meta fetcher module "lua"
+core debug: removing module "lua"
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\02_frenchtv.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+core debug: no art finder modules matched
+core debug: art not found for dshow://
+core debug: looking for extension module matching "any": 1 candidates
+lua debug: Opening Lua Extension module
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\extensions
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\extensions
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\extensions\VLSub.luac
+lua debug: Scanning Lua script c:\Program Files (x86)\VideoLAN\VLC\lua\extensions\VLSub.luac
+lua debug: Script c:\Program Files (x86)\VideoLAN\VLC\lua\extensions\VLSub.luac has the following capability flags: 0x5
+core debug: using extension module "lua"
+core debug: using interface module "qt4"
+core debug: processing request item: null, node: Playlist, skip: 0
+core debug: rebuilding array of current - root Playlist
+core debug: rebuild done - 1 items, index -1
+core debug: starting playback of the new playlist item
+core debug: resyncing on dshow://
+core debug: dshow:// is at 0
+core debug: creating new input thread
+core debug: Creating an input for 'dshow://'
+core debug: requesting art for dshow://
+core debug: looking for meta fetcher module matching "cany": o1 candidatesr
+e debug: using sout chain=`transcode{vcodec=mp2v,vb=1024,fps=30,width=320,acodecl=uam debug:p2a, abT=12ryi8,scale=1n,chgannels=2,deinterl aLua scecripts in ,aC:\Usersudi\o-shnsync}:sizle\Atandard{papData\Roamiccess=finlge\,mux=ps,dst=C:\vlc\lua\meUta\fetscherers\sh
+nizle\Documents/Lecturus\Oultput.mpg}ua' debug: 
+Trying Lua scripts in cc:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetchero
+re debug: stream=`standard'
+lcuorea debug :d eblugooking f: or Tryisoung Lua playlitst  stscreript acm:\P rogramm Fodilule es mat(ching "xstandard86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac"
+: 22 candidates
+core debug: set config option: sout-standard-access to file
+core debug: lsetu acon figdebu goption: sout-sta:ndard- mskiuxpping script  to (unmpsa
+tched scope) corec:\P debug: rsoget cronfaig optm Fiileson:  (xsou86)\Vt-staideoLAndard-dstN\VLC\lua\m eta\fteo tcheCr\tv:\Usrage.luacers\s
+hnizle\Documents/Lecturucs\oOutput.mpgre
+ debug: no meta fetcher modules matchedcore
+ debug: lookicng for sout access modoulree matching " debug: file":searching art for  dshow://8
+ candidates
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts ainc ceC:\Usss_oers\sutpuhnt_fiizle\Alepp debData\Rougaming\vlc\lua\:me ta\file acceass ortutput op
+ened (C:\Users\shnizlle\uaDo decumbents/Lecturus\Output.mpg)
+core debug: using sout access module "access_output_file"
+core debug: looking for sout mux module matching "ps": 10 candidates
+mux_ps: Open
+core debug: using sout mux module "mux_ps"
+core debug: muxer support adding stream at any time
+ucgore:  debuTgrying:  Lua scriptmsu xiern pr ec:\Progrfaemr sFiles  t(o waxit 8fo6r)\Vid eoalLAN\lV ELSC\ blua\meeforte sa\taartr
+ting to mux
+stream_out_standard debug: using `file/ps://C:\Users\shnizle\Documents/Lecturus\Oluutapu detbu.mgpg:'
+ Trying Lua coprleay debugl:i susint scripg tso uc:\Prtog strearam Fmiles  (x86)modu\VideloLAe "Nstrea\mVLC\lua\me_outa\tart_\s0tand0a_musirdcb"r
+ainz.luac
+core debug: stream=`transcode'
+core debug: looking for sout stream module matching "transcode": 22 candidates
+lua debug: skipping script (unmatched scope) cc:\Program Fileores (x86)\VideoLA debugN\VLC\lua\meta\art\00_mu: sicbrainz.luacset config option: 
+sout-transcode-vcodec to mp2vl
+ua debug: coreT debugr: ying Lua playlist set config soption: cript sout-transcode-vb to c:\Progr1024am Files (x86)\Video
+LAN\VLC\lua\meta\art\01_googlecimage.luacore
+ debug: set config option: sout-transcode-fps to 30
+core debug: set config option: sout-transcode-width to 320
+core debug: set config option: sout-transcode-acodec to mp2al
+ua debug: skipping cscript (unmatched scope) oc:\Program Files (rx86)\VideoLAN\VLC\lua\meta\arte debug: set con\0f1_gig ooption: oglseimoage.luaut-transcodce
+-ab to 128
+corelua  debug: dTrying eLua playlist scbug: ript set config c:\Program Files (x86)\VideooLAN\VLC\ptlua\metai\art\02_frenchtv.luacon: 
+sout-transcode-scale to 1
+core debug: set config option: sout-transcode-channels to 2
+core debug: set config option: sout-transcode-deinterlace to (null)
+core warning: option audio-sync is unknown
+stream_out_transcode debug: Checking codec mapping for mp2a got mpga 
+stream_out_transcode debug: codec audio=lmpuaga  debug: 0skipping sHz 2 channels cript (unmatched 1s28Kb/sc
+ope) c:\Program Files (x86)\VisdeoLAN\VLCt\lua\mream_oeta\uartt_transcode\02_frenchtv.l uacd
+ebug: Checking video codec mapping for lmpu2v agot  debug: mp2vT rying Lua playlis
+t script c:\Program Files (x86)\sVideotrLAN\VLC\lua\eam_out_tranmscodeeta\art\03 _debug:l astcofm.luadce
+c video=mp2v 320x0 scaling: 1.000000 1024kb/s
+core debug: using sout stream module "stream_out_transcode"
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\shnizle\AplpDauata deb\Local\Tugemp: 'skipp
+ing script (counre debug: `dshow://' gives maccess `atdshoched scope) w' decmux `:' p\ath `P'rogr
+am Files (x86)\VicdeoLAN\VLC\lua\meta\art\03_lastfm.luaco
+re debug: specified demux `qany't4
+ debug: IM: Setting an input
+ccoreore debug:  debug: ncreating demux: acocess=' dshow' demux='aany' locatirt finon=d'er' file=' mo(dulnull)'
+es matched
+core debug: clooking foor racecess_d debugem: ulxo omoduklinge  matchingfor  "meta fetcherd module matching "show": any": 121 c andidatesc
+andidates
+dshow debug: dshow-vdev: 
+dshow debug: dshow-adev: 
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\fetcher\tvrage.luac
+core debug: using meta fetcher module "lua"
+core debug: removing module "lua"
+core debug: searching art for dshow://
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\00_musicbrainz.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\01_googleimage.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\02_frenchtv.luac
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\art\03_lastfm.luac
+core debug: no art finder modules matched
+core debug: art not found for dshow://
+dshow debug: found device: TOSHIBA Web Camera - HD
+dshow debug: asking for default device: TOSHIBA Web Camera - HD
+dshow debug: asked for TOSHIBA Web Camera - HD, binding to TOSHIBA Web Camera - HD
+dshow debug: using device: TOSHIBA Web Camera - HD
+dshow debug: EnumDeviceCaps: output pin: Capture
+dshow debug: EnumDeviceCaps: input pin: Video Camera Terminal
+dshow debug: EnumDeviceCaps: trying pin Capture
+dshow debug: EnumDeviceCaps: input pin default format configured
+dshow debug: EnumDeviceCaps: input pin accepts chroma: YUY2, width:1280, height:720, fps:10.000000
+filter debug: CaptureFilter::JoinFilterGraph
+dshow debug: connecting filters
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [not connected]
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryAccept [OK] (width=1280, height=720, chroma=YUY2, fps=10.000000)
+filter debug: CapturePin::ReceiveConnection [OK]
+filter debug: CapturePin::NotifyAllocator
+dshow debug: ConnectFilters: graph_builder2 available.
+dshow warning: ConnectFilters: No crossBar routes found (incompatible pin types)
+dshow debug: filters connected successfully !
+dshow debug: MEDIATYPE_Video
+dshow debug: selected video pin accepts format: YUY2
+dshow debug: found device: Headset (Nokia BH-503 Hands-Free)
+dshow debug: found device: Microphone Array (Conexant SmartAudio HD)
+dshow debug: asking for default device: Headset (Nokia BH-503 Hands-Free)
+dshow debug: asked for Headset (Nokia BH-503 Hands-Free), binding to Headset (Nokia BH-503 Hands-Free)
+dshow debug: using device: Headset (Nokia BH-503 Hands-Free)
+dshow debug: EnumDeviceCaps: output pin: Capture
+dshow debug: EnumDeviceCaps: input pin: Master Volume
+dshow debug: EnumDeviceCaps: trying pin Capture
+dshow debug: EnumDeviceCaps: input pin default format configured
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:44100 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:44100 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:44100 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:32000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:32000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:22050 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:22050 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:11025 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:11025 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:8000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:8000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:44100 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:44100 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:22050 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:22050 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:11025 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:11025 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:8000 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:8000 bits/sample:8
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:48000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:48000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:2, samples/sec:96000 bits/sample:16
+dshow debug: EnumDeviceCaps: input pin accepts format: araw, channels:1, samples/sec:96000 bits/sample:16
+filter debug: CaptureFilter::JoinFilterGraph
+dshow debug: connecting filters
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [not connected]
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryAccept [OK] (channels=2, samples/sec=44100, bits/samples=16, format=araw)
+filter debug: CapturePin::ReceiveConnection [OK]
+filter debug: CapturePin::NotifyAllocator
+dshow debug: filters connected successfully !
+dshow debug: MEDIATYPE_Audio
+dshow debug: selected audio pin accepts format: araw
+dshow debug: Playing...
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::QueryPinInfo
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CaptureFilter::QueryFilterInfo
+filter debug: CaptureFilter::Run
+filter debug: CaptureFilter::Run
+core debug: selecting program id=0
+core debug: using access_demux module "dshow"
+core debug: looking for packetizer module matching "any": 23 candidates
+core debug: using packetizer module "rawvideo"
+core debug: looking for packetizer module matching "any": 23 candidates
+core debug: using packetizer module "packetizer_copy"
+core debug: starting in sync mode
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\shnizle\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in c:\Program Files (x86)\VideoLAN\VLC\lua\meta\reader
+lua debug: Trying Lua playlist script c:\Program Files (x86)\VideoLAN\VLC\lua\meta\reader\filename.luac
+core debug: no meta reader modules matched
+core debug: `dshow://' successfully opened
+core debug: Buffering 0%
+core debug: switching to async mode
+core debug: adding a new sout input (sout_input:02bde4f0)
+stream_out_transcode debug: creating video transcoding from fcc=`YUY2' to fcc=`mp2v'
+core debug: looking for decoder module matching "any": 43 candidates
+core debug: using decoder module "rawvideo"
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 1/1000000
+avcodec debug: Time base set to 1/240
+avcodec debug: rc buffer size 4096000 bits
+avcodec debug: found encoder MPEG-2 Video
+core debug: using encoder module "avcodec"
+core debug: removing module "avcodec"
+packetizer_copy debug: need valid dts
+core debug: Buffering 33%
+core debug: Buffering 16%
+core debug: Buffering 66%
+core debug: Buffering 53%
+core debug: adding a new sout input (sout_input:02bdd0e0)
+stream_out_transcode debug: creating audio transcoding from fcc=`s16l' to fcc=`mpga'
+core debug: looking for decoder module matching "any": 43 candidates
+araw debug: samplerate:44100Hz channels:2 bits/sample:16
+core debug: using decoder module "araw"
+core debug: looking for encoder module matching "any": 21 candidates
+core debug: using encoder module "twolame"
+core debug: input 's16l' 44100 Hz Stereo frame=1 samples/4 bytes
+core debug: conversion: 's16l'->'s16l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "ugly_resampler"
+core debug: adding a new input
+mux_ps debug: adding input codec=mpga
+core debug: removing module "twolame"
+core debug: removing module "ugly_resampler"
+core debug: Buffering 100%
+core debug: Buffering 89%
+core debug: Stream buffering done (400 ms in 400 ms)
+core debug: Decoder wait done in 0 ms
+core debug: looking for video filter2 module matching "deinterlace": 58 candidates
+deinterlace debug: using blend deinterlace method
+deinterlace debug: deinterlacing
+core debug: using video filter2 module "deinterlace"
+core debug: Filter 'deinterlace' (03cfb4ec) appended to chain
+stream_out_transcode debug: decoder aspect is 1.333333:1
+stream_out_transcode debug: source pixel aspect is 0.750000:1
+stream_out_transcode debug: scaled pixel aspect is 0.750000:1
+stream_out_transcode debug: source 1280x720, destination 320x180
+stream_out_transcode debug: source fps 10/1, destination 30/1
+stream_out_transcode: input interval 100000 (base 1)
+stream_out_transcode: output interval 33333 (base 1)
+stream_out_transcode debug: encoder aspect is 960:720
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 1280x720 (1280x720) chroma: YUY2 -> 320x180 (320x180) chroma: I420 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (03d6483c) appended to chain
+stream_out_transcode debug: destination (after video filters) 320x180
+core debug: looking for encoder module matching "any": 21 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: Time base for probing setted to 1/30
+avcodec debug: Time base set to 1/30
+avcodec debug: rc buffer size 4096000 bits
+avcodec debug: found encoder MPEG-2 Video
+core debug: using encoder module "avcodec"
+core debug: adding a new input
+mux_ps debug: adding input codec=mp2v
+core debug: looking for encoder module matching "any": 21 candidates
+core debug: using encoder module "twolame"
+core debug: input 's16l' 44100 Hz Stereo frame=1 samples/4 bytes
+core debug: conversion: 's16l'->'s16l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "ugly_resampler"
+core debug: exiting
+core debug: removing all interfaces
+core debug: exiting
+core debug: no exit handler
+core debug: removing module "qt4"
+core debug: deactivating the playlist
+core debug: incoming request - stopping current input
+core debug: control: stopping input
+core debug: incoming request - stopping current input
+core debug: finished input
+core debug: removing module "rawvideo"
+core debug: killing decoder fourcc `YUY2', 0 PES in FIFO
+core debug: removing a sout input (sout_input:02bde4f0)
+core debug: removing module "rawvideo"
+core debug: removing module "avcodec"
+core debug: Filter 03cfb4ec removed from chain
+core debug: removing module "deinterlace"
+core debug: Filter 03d6483c removed from chain
+core debug: removing module "swscale"
+mux_ps debug: removing input
+core debug: removing module "packetizer_copy"
+core debug: killing decoder fourcc `s16l', 0 PES in FIFO
+core debug: removing a sout input (sout_input:02bdd0e0)
+core debug: removing module "araw"
+core debug: removing module "twolame"
+core debug: removing module "ugly_resampler"
+mux_ps debug: removing input
+core warning: no more input streams for this mux
+core debug: removing module "dshow"
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::Pause
+filter debug: CaptureFilter::Stop
+filter debug: CapturePin::EndFlush
+filter debug: CaptureFilter::Stop
+filter debug: CapturePin::EndFlush
+dshow debug: releasing DirectShow
+dshow debug: DeleteDirectShowGraph: Removing filters
+dshow debug: DeleteDirectShowGraph: Removing capture filter
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CapturePin::Disconnect [OK]
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::JoinFilterGraph
+filter debug: CaptureFilter::GetState 0
+dshow debug: DeleteDirectShowGraph: Removing device filter
+dshow debug: DeleteDirectShowGraph: Removing capture filter
+filter debug: CaptureFilter::EnumPins
+filter debug: CapturePin::QueryDirection
+filter debug: CapturePin::ConnectedTo [OK]
+filter debug: CapturePin::Disconnect [OK]
+filter debug: CaptureFilter::SetSyncSource
+filter debug: CaptureFilter::JoinFilterGraph
+filter debug: CaptureFilter::GetState 0
+dshow debug: DeleteDirectShowGraph: Removing device filter
+core debug: Program doesn't contain anymore ES
+core debug: incoming request - stopping current input
+core debug: dead input
+core debug: destroying useless sout
+core debug: destroying chain... (name=transcode)
+core debug: removing module "stream_out_transcode"
+core debug: destroying chain done
+core debug: destroying chain... (name=standard)
+core debug: removing module "stream_out_standard"
+core debug: removing module "mux_ps"
+mux_ps: Close
+core debug: removing module "access_output_file"
+access_output_file debug: file access output closed
+core debug: destroying chain done
+cqotre4 de debugbug::  IMre:moving  Demoleting the inputdule "
+directsound"
+qt4 debug: requesting exit...
+qt4 debug: waiting for UI thread...
+qt4 debug: QApp exec() finished
+qt4 debug: Video is not needed anymore
+qt4 debug: Killing extension dialog provider
+qt4 debug: ExtensionsDialogProvider is quitting...
+core debug: removing module "lua"
+lua debug: Deactivating all loaded extensions
+lua debug: All extensions are now deactivated
+core debug: removing module "win32"
+core debug: removing module "hotkeys"
+core debug: removing module "logger"
+-- logger module stopped --
