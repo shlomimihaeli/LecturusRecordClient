@@ -40,6 +40,18 @@ public class WelcomeController implements Initializable, ControlledScreen {
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
     }
+
+    @Override
+    public void onResume() {
+        
+    }
+
+    @Override
+    public void onStop() {
+        
+    }
+    
+    
     
     
 }

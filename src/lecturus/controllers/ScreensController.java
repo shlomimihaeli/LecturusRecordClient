@@ -27,6 +27,7 @@ import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import lecturus.interfaces.ControlledScreen;
 
@@ -38,9 +39,13 @@ import lecturus.interfaces.ControlledScreen;
 public class ScreensController extends StackPane{ 
     
     private HashMap<String, Node> screens = new HashMap<>();
+    private HashMap<String, ControlledScreen> screenControllers = new HashMap<>();
     
-    public void addScreen(String name, Node screen) { 
+    private ControlledScreen currentController;
+    
+    public void addScreen(String name, Node screen, ControlledScreen controlledScreen) { 
           screens.put(name, screen); 
+          screenControllers.put(name, controlledScreen);
     } 
      //any required method here
     
@@ -52,7 +57,7 @@ public class ScreensController extends StackPane{
        ControlledScreen myScreenControler = 
               ((ControlledScreen) myLoader.getController());
        myScreenControler.setScreenParent(this); 
-       addScreen(name, loadScreen); 
+       addScreen(name, loadScreen, myScreenControler); 
        return true; 
      }catch(Exception e) { 
        System.out.println(e.getMessage()); 
@@ -63,6 +68,11 @@ public class ScreensController extends StackPane{
     public boolean setScreen(final String name) { 
 
      if(screens.get(name) != null) { //screen loaded 
+         
+         // call resume
+         currentController = screenControllers.get(name);
+         currentController.onResume();
+         
        final DoubleProperty opacity = opacityProperty(); 
 
        //Is there is more than one screen 
@@ -106,6 +116,11 @@ public class ScreensController extends StackPane{
          return false; 
     } 
  } 
+    
+    public void onCloseRequest(WindowEvent t){
+        
+       currentController.onStop();
+    }
     
     public void alert(String msg){
         

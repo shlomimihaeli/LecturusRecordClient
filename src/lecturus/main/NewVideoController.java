@@ -29,6 +29,19 @@ public class NewVideoController implements Initializable, ControlledScreen {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @Override
+    public void onResume() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onStop() {
+       
+    }
+    
+    
+    
     
     @FXML
     public void createNewVideo(){

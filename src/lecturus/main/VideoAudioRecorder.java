@@ -55,15 +55,24 @@ public class VideoAudioRecorder{
     
     Webcam webcam;
 
-    boolean recording;
+    private boolean recording;
+    
+    File file;
 
     void setup() {
       //frameRate(30);
       //size(widthCapture, heightCapture, JAVA2D);
-      setupCam();
+      
       avSetup();
     }
 
+    public VideoAudioRecorder() {
+        
+       
+        
+        setupCam();
+    }
+    
     private void setupCam(){
         
         
@@ -76,10 +85,8 @@ public class VideoAudioRecorder{
 		webcam.open(true);
     }
     
-    void draw() {
-      if (true){//cam.available()) {
-        //cam.read();
-        //image(cam.get(), 0, 0);
+    BufferedImage draw() {
+
 
         if (recording) {
           if (imw.isOpen()) {
@@ -116,25 +123,55 @@ public class VideoAudioRecorder{
                 }
               }
               fTime = System.nanoTime();
+              
+              return bgr;
             }
           }
+          
+        }else{
+            
+            return ConverterFactory.convertToType(webcam.getImage(), BufferedImage.TYPE_3BYTE_BGR);
         }
-      }
+    
+      
+      return null;
+    }
+    
+    public int getVideoLength(){
+        
+        return (int) (fTime - sTime / 1000000000.0);
     }
 
-    public void toggleRecord(){
+    /*public void toggleRecord(){
         if (!recording) {
-          //println("recording");
-          setup();
-          avRecorderSetup();
-          recording = true;
+          startRecording();
+          
         }else{
             //println("saving");
-          recording = false;
-          //imw.flush();
-          imw.close();
-          webcam.close();
+          stopRecording();
         }
+    }*/
+    
+    public boolean isRecording(){
+        
+        return recording;
+    }
+    
+    public void startRecording(File videoFile){
+        
+         this.file = videoFile;
+        
+        setup();
+          avRecorderSetup();
+          recording = true;
+    }
+    
+    public void stopRecording(){
+        
+        recording = false;
+          //imw.flush();
+          if(imw != null) imw.close();
+          if(webcam != null) webcam.close();
     }
     
    /* public void keyPressed() {
@@ -178,10 +215,10 @@ public class VideoAudioRecorder{
     }
 
     void avRecorderSetup() {
-        File file = new File(String.valueOf(videoId)+".mp4");
+        //File file = new File(String.valueOf(videoId)+".mp4");
 
 		    
-      imw = ToolFactory.makeWriter(file.getName());//or "output.avi" or "output.mov"
+      imw = ToolFactory.makeWriter(file.getAbsolutePath());//or "output.avi" or "output.mov"
       imw.open();
       imw.setForceInterleave(true);
       imw.addVideoStream(0, 0, IRational.make((double)vidRate), widthCapture, heightCapture);

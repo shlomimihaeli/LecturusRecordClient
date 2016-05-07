@@ -54,6 +54,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.swing.JFileChooser;
+import lecturus.asyncvideouploader.VideoUploaderCallback;
 import lecturus.controllers.ScreensController;
 import lecturus.interfaces.ControlledScreen;
 import org.json.simple.JSONObject;
@@ -76,7 +77,6 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     @FXML
     private Hyperlink videoEditLink;
     
-    public final String localStorage = "c:/Documents/Lecturus/";
     private Thread recordThead;
     private int frameIndex = 0;
     private IMediaWriter writer;
@@ -84,7 +84,6 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     private File file;
     private boolean recording = false;
     private boolean displaying = true;
-    private AudioFormat audioFormat;
     final int audioStreamIndex = 1;
     final int audioStreamId = 1;
     int channelCount = 2;
@@ -96,6 +95,9 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     int audionumber;
     private String remoteVideoURL;
     VideoAudioRecorder var;
+    boolean recordingSessionNotStarted = true;
+    boolean isDisplaying = false;
+    VideoUploader videoUploader;
     
     /**
      * Initializes the controller class.
@@ -103,29 +105,102 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        if(validateLocalStorage(getLecturusStorageFolder())){
-            
-            /**try{
-             
-                Process p = Runtime.getRuntime().exec(getRecordCommand());
-
-            }catch(IOException e){
-                e.printStackTrace();
-            }*/
-            
-            //startDisplaying();
-        }
-        
         //Media media = new Media("http://localhost:3333");
         //final MediaPlayer player = new MediaPlayer(media);
         
         
         
+    }    
+
+    @Override
+    public void onResume() {
+      
+        isDisplaying = true;
+        
+        videoUploader = new VideoUploader(new VideoUploaderCallback() {
+            @Override
+            public void onFinish() {
+                System.out.println("bg upload finished");
+                
+                // upload is done, send end video session request and retrive
+            }
+
+            @Override
+            public void onFailed() {
+                System.err.println("bg upload failed");
+            }
+
+            @Override
+            public void onChunkUploaded(int chunkIndex) {
+                System.out.println("uploaded chunk "+chunkIndex);
+            }
+        });
+        
+        var = initVideoRecorder();
+        
+        
        //mPlayer.setMediaPlayer(player);
        
-       var = new VideoAudioRecorder();
+       new Thread(){
+
+
+
+                        @Override
+                        public void run() {
+
+                           while(isDisplaying){
+
+                               BufferedImage bi = var.draw();
+                               
+                          
+                               // update screen display
+                               try{
+                                   
+                                   Image displayImage = SwingFXUtils.toFXImage(bi, null);
+                                    videoDisplayImageView.setImage(displayImage);
+                               }catch(Exception e){
+                                   
+                               }
+
+                               try{
+                                    // 10 FPS
+                                    Thread.sleep(41);
+                                }catch(Exception e){
+
+                                }
+                           } 
+                        }
+
+                 }.start();
+       
         
-    }    
+    }
+
+    @Override
+    public void onStop() {
+       
+        videoUploader = null;
+        isDisplaying = false;
+        if(var != null) {
+            
+            try{
+                var.stopRecording();
+                var = null;
+            }catch(Exception e){
+                
+            }
+            
+        }
+    }
+    
+    
+    
+    private VideoAudioRecorder initVideoRecorder(){
+ 
+            
+            return new VideoAudioRecorder();
+        
+    }
     
     private String getRecordCommand(){
         
@@ -150,41 +225,60 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     
     @FXML
     private void startRecordingBtnAction(ActionEvent evt){
-        var.toggleRecord();
         
-        if(var.recording){
-             
-             new Thread(){
-                    
-                    
-                    
+        try{
+          
+            //var.toggleRecord();
+
+            if(recordingSessionNotStarted){
+                
+                // only one record per session
+                recordingSessionNotStarted = false;
+                
+                // create new video file
+                file = new File(getLecturusStorageFolder()+"/"+String.valueOf(videoId)+".mp4");
+                
+                videoUploader.setFile(file);
+                
+                // start recording to file
+                var.startRecording(file);
+                
+                recordBtn.setText("Stop");
+                
+                // start bg uploading
+                videoUploader.start();
+                
+                Runtime.getRuntime().addShutdownHook(new Thread(){
                     @Override
                     public void run() {
-                        
-                       while(var.recording){
-                           
-                           var.draw();
-                           
-                           try{
-                                // 10 FPS
-                                Thread.sleep(41);
-                            }catch(Exception e){
-
-                            }
-                       } 
+                        var.stopRecording();
+                        stopRecording();
                     }
                     
-             }.start();
-           // recordBtn.setText("Stop");
-        }else{
-            //stopRecording();
-            //recordBtn.setVisible(false);
+                });
+                
+            }else{
+                
+                var.stopRecording();
+                stopRecording();
+                
+                videoUploader.setFileHasBeenClosed();
+                
+                // save file and show link, stop recording
+                recordBtn.setVisible(false);
+            }
+            
+            
+        }catch(Exception e){
+            
+            videoUploader.uploadStopped();
+            if(var != null) var.stopRecording();
         }
     }
     
-    private String getLecturusStorageFolder(){
+    public static String getLecturusStorageFolder(){
         
-        return new JFileChooser().getFileSystemView().getDefaultDirectory().toString()+"/Lecturus";
+        return new JFileChooser().getFileSystemView().getDefaultDirectory().toString()+"/LecturusVideos";
     }
     
     private boolean validateLocalStorage(String storage){
@@ -210,165 +304,31 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         return false;
     }
     
-    private void setupCam(){
+    public void closeVideoSession(){
         
-        
-		      Dimension size = WebcamResolution.QVGA.getSize();
-
-                      //writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_H264, 640, 360);
-
-		      webcam = Webcam.getDefault();
-		webcam.setViewSize(size);
-		webcam.open(true);
-    }
-    
-    private void setupVideoFile(){
-        avSetup();
-        file = new File(String.valueOf(videoId)+".mp4");
-
-		      writer = ToolFactory.makeWriter(file.getName());
-		      Dimension size = WebcamResolution.QVGA.getSize();
-
-                      writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_H264, size.width, size.height);
-                       audionumber = writer.addAudioStream(audioStreamIndex, 0, channelCount, sampleRate);
-    }
-    
-    public void startDisplaying(){
-        
-        setupCam();
-        
-        
-        frameIndex = 0;
-        
-
-		final long start = System.nanoTime();
-
-                recordThead = new Thread(){
+        try{
+                // close video and prepare it for editing
+                JSONObject prepareForEditRes = HttpUtills.restGetAction("http://lecturus2.herokuapp.com/video/end?id="+String.valueOf(videoId)+"&length="+String.valueOf(var.getVideoLength()));
+                if(prepareForEditRes.get("status").equals("success")){
                     
+                    videoEditLink.setVisible(true);
+                    videoEditLink.setText(remoteVideoURL);
                     
+                    myController.alert("video uploaded and prepared for edit successfully");
                     
-                    @Override
-                    public void run() {
-                        
-                        while(displaying || recording){
-                            
-                            /**
-                             * capture camera
-                             */
-                            
-
-                                             BufferedImage image = ConverterFactory.convertToType(webcam.getImage(), BufferedImage.TYPE_3BYTE_BGR);
-
-                                       Image displayImage = SwingFXUtils.toFXImage(image, null);
-                            videoDisplayImageView.setImage(displayImage);
-                            
-                            if(!recording) continue;
-
-                            System.out.println("Capture frame " + frameIndex);
-                            System.out.println("file size:"+file.length());
-                            
-                                             IConverter converter = ConverterFactory.createConverter(image, IPixelFormat.Type.YUV420P);
-
-                                             IVideoPicture frame = converter.toPicture(image, (System.currentTimeMillis() - start) * 1000);
-                            frame.setKeyFrame(frameIndex == 0);
-                            frame.setQuality(0);
-
-                            //writer.encodeVideo(0, frame);//image, (System.nanoTime()-start) / 1000,  TimeUnit.NANOSECONDS);
-                            writer.encodeVideo(0,image, (System.nanoTime()-start) ,  TimeUnit.NANOSECONDS);
-
-                             
-                            
-                            //audio recording stuff
-                            if (aline.available() == 88200) {
-                                byte[] audioBytes = new byte[ aline.getBufferSize() / 2 ]; // best size?
-                                int nBytesRead = 0;
-                              nBytesRead = aline.read(audioBuf, 0, aline.available());//audioBuf.length);//aline.available());
-                              if (nBytesRead>0) {
-                                  
-                                  int numSamplesRead = nBytesRead / 2 +2;
-                                    short[] audioSamples = new short[ numSamplesRead ];
-                                    if (audioFormat.isBigEndian()) {
-                                        for (int i = 0; i < numSamplesRead; i++) {
-                                            audioSamples[i] = (short)((audioBytes[2*i] << 8) | audioBytes[2*i + 1]);
-                                        }
-                                    }
-                                    else {
-                                        for (int i = 0; i < numSamplesRead; i++) {
-                                            try{
-                                                audioSamples[i] = (short)((audioBytes[2*i + 1] << 8) | audioBytes[2*i]);
-                                            }catch(Exception e){
-                                                
-                                            }
-                                        }
-                                    }
-                                  
-                                  IBuffer iBuf = IBuffer.make(null, audioBuf, 0, nBytesRead);
-                                  IAudioSamples smp = IAudioSamples.make(iBuf, channelCount, IAudioSamples.Format.FMT_S16);
-
-                                if (smp!=null) {
-                                  long numSample = nBytesRead/smp.getSampleSize();
-                                  smp.setComplete(true, numSample, (int) audioFormat.getSampleRate(), audioFormat.getChannels(), IAudioSamples.Format.FMT_S16, (System.nanoTime()-start));
-                                  smp.put(audioBuf, 1, 0, aline.available());
-                                  try {
-                                    //writer.encodeAudio(audionumber, smp);
-                                    writer.encodeAudio(audionumber, audioSamples, (System.nanoTime()-start),  TimeUnit.NANOSECONDS );
-                                  }
-                                  catch(Exception e) {
-                                    System.out.println("EXCEPTION: " + e);
-                                  }
-                                }
-                              }
-                            }
-
-                            frameIndex++;
-
-                            try{
-                                // 10 FPS
-                                Thread.sleep(41);
-                            }catch(Exception e){
-
-                            }
-                        }
-                    }
-
+                    // show edit button
                     
-                };
+                }
                 
-                recordThead.start();
-              
+            }catch(Exception e){
+                
+                myController.alert("video preparation failed");
+                e.printStackTrace();
+            }
     }
-    
-    void avSetup() {
-        audioFormat = new AudioFormat(44100.0F, 16, channelCount, true, false);
-        sampleRate = (int) audioFormat.getSampleRate();
-        channelCount = audioFormat.getChannels();
-        DataLine.Info info = new DataLine.Info(TargetDataLine.class, audioFormat);
-        try {
-          aline = (TargetDataLine) AudioSystem.getLine(info);
-          aline.open(audioFormat);
-          aline.start();
-          //println("audio line");
-        }
-        catch (LineUnavailableException e)
-        {
-          //println("unable to get a recording line");
-          e.printStackTrace();
-          //exit();
-        }
-        int bufferSize = (int) audioFormat.getSampleRate() * audioFormat.getFrameSize();
-        audioBuf = new byte[bufferSize];
-        targetType = aline.getFormat();
-        audioInputStream = new AudioInputStream(aline);
-        
-       
-        
-      }
     
     private void stopRecording(){
         
-        recording = false;
-        writer.close();
-        webcam.close();
         System.out.println("Video recorded in file: " + file.getAbsolutePath());
         
         /*File vFile = new File("C:\\Users\\shnizle\\Documents\\NetBeansProjects\\Lec.2.0\\"+String.valueOf(videoId)+".mp4");
@@ -403,99 +363,6 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         
         
         
-    }
-    
-    private void rec2(){
-        
-        BufferedImage s1 = ConverterFactory.convertToType(webcam.getImage(), BufferedImage.TYPE_3BYTE_BGR);//genImage();
-        //writer = ToolFactory.makeWriter("temp/" + sermon.getFile().getName() + ".flv");
-
-        File f = new File(String.valueOf(videoId)+".flv");
-
-		      writer = ToolFactory.makeWriter(file.getName());
-		      Dimension size = WebcamResolution.QVGA.getSize();
-
-                      //writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_H264, size.width, size.height);
-                       //audionumber = writer.addAudioStream(audioStreamIndex, 0, channelCount, sampleRate);
-        
-        String filename = f.getAbsolutePath();
-        IContainer container = IContainer.make();
-
-        if (container.open(filename, IContainer.Type.READ, null) < 0) {
-            throw new IllegalArgumentException("could not open file: " + filename);
-        }
-        int numStreams = container.getNumStreams();
-
-        int audioStreamId = -1;
-        IStreamCoder audioCoder = null;
-        for (int i = 0; i < numStreams; i++) {
-            IStream stream = container.getStream(i);
-            IStreamCoder coder = stream.getStreamCoder();
-            if (coder.getCodecType() == ICodec.Type.CODEC_TYPE_AUDIO) {
-                audioStreamId = i;
-                audioCoder = coder;
-                break;
-            }
-        }
-        if (audioStreamId == -1) {
-            throw new RuntimeException("could not find audio stream in container: " + filename);
-        }
-
-        if (audioCoder.open() < 0) {
-            throw new RuntimeException("could not open audio decoder for container: " + filename);
-        }
-        writer.addAudioStream(0, 0, audioCoder.getChannels(), audioCoder.getSampleRate());
-        writer.addVideoStream(1, 1, size.width, size.height);
-        IPacket packet = IPacket.make();
-        int n = 0;
-        while (container.readNextPacket(packet) >= 0) {
-            n++;
-
-            if (packet.getStreamIndex() == audioStreamId) {
-                IAudioSamples samples = IAudioSamples.make(2048, audioCoder.getChannels());
-                int offset = 0;
-                while (offset < packet.getSize()) {
-                    try {
-                        int bytesDecoded = audioCoder.decodeAudio(samples, packet, offset);
-                        if (bytesDecoded < 0) {
-                            //throw new RuntimeException("got error decoding audio in: " + filename);
-                            break;
-                        }
-                        offset += bytesDecoded;
-
-                        if (samples.isComplete()) {
-                            if (n % 1000 == 0) {
-                                writer.flush();
-                                System.out.println(n);
-                                System.gc();
-                            }
-                            writer.encodeAudio(0, samples);
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-                }
-            } else {
-                do {
-                } while (false);
-            }
-        }
-        for (int i = 0; i < container.getDuration() / 1000000; i++) {
-            writer.encodeVideo(1, s1, i, TimeUnit.SECONDS);
-        }
-
-        writer.close();
-
-        if (audioCoder != null) {
-            audioCoder.close();
-            audioCoder = null;
-        }
-        if (container != null) {
-            container.close();
-            container = null;
-        }
-        //return "temp/" + sermon.getFile().getName() + ".flv";
-    
     }
     
     @Override

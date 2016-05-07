@@ -6,11 +6,11 @@
 package lecturus.main;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lecturus.controllers.ScreensController;
 
 /**
@@ -25,7 +25,7 @@ public class Lec20 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        ScreensController mainContainer = new ScreensController(); 
+        final ScreensController mainContainer = new ScreensController(); 
        mainContainer.loadScreen(Lec20.NEW_VIDEO_SCREEN, 
                             "/lecturus/main/"+Lec20.NEW_VIDEO_SCREEN); 
        mainContainer.loadScreen(Lec20.WELCOME_SCREEN, 
@@ -41,25 +41,14 @@ public class Lec20 extends Application {
        stage.setScene(scene); 
        stage.show(); 
        
-       //final Process p = Runtime.getRuntime().exec("\"c:/Program Files (x86)/VideoLAN/VLC/vlc.exe\" dshow:// :v4l2-width=320 :v4l2-height=240 :display :sout-keep --sout \"#transcode{vcodec=theora,acodec=vorbis,vb=800,ab=128} :display :standard{access=file,dst=C:\\Users\\shnizle\\Documents\\Lecturus\\capture.ogg}\"");
-        
-       new Thread(){
+       stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
-            public void run() {
+            public void handle(WindowEvent t) {
                 
-                try{
-                    
-                    sleep(25000);
-                }catch(Exception e){
-                    
-                }
-                
-                 //p.destroy();
+                mainContainer.onCloseRequest(t);
+                System.out.println("window has been closed");
             }
-           
-           
-       };//.start();
-      
+        });
     }
 
     /**
