@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import lecturus.asyncvideouploader.VideoUploaderCallback;
+import static lecturus.main.RecordSessionController.videoId;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import sun.net.www.http.HttpClient;
@@ -27,7 +28,7 @@ import sun.net.www.http.HttpClient;
  */
 public class VideoUploader extends Thread{
     
-    public static final int CHUNK_SIZE = 1*500*1024;
+    public static final int CHUNK_SIZE = 1048576/6;
     private static final int MAX_RETRIES = 10;
     
     private boolean fileCloded = false;
@@ -35,10 +36,12 @@ public class VideoUploader extends Thread{
     private File fileToUpload;
     private boolean uploadStopped = false;
     private VideoUploaderCallback callback;
+    private String token;
 
-    public VideoUploader(VideoUploaderCallback callback) {
+    public VideoUploader(String token, VideoUploaderCallback callback) {
     
         this.callback = callback;
+        this.token = token;
     }
     
     
@@ -80,7 +83,7 @@ public class VideoUploader extends Thread{
             if(chunkIndex * CHUNK_SIZE < fileLength && ((chunkIndex+1)*CHUNK_SIZE < fileLength || fileCloded)){
                 
                     try{
-                        JSONObject saveRes = VideoUploader.uploadFileChunk("http://lecturus2.herokuapp.com/video/upload?id=20&index="+chunkIndex, "video", fileToUpload, chunkIndex*CHUNK_SIZE , CHUNK_SIZE);
+                        JSONObject saveRes = VideoUploader.uploadFileChunk("http://1e3d0ffd.ngrok.io/video/upload?id="+String.valueOf(RecordSessionController.videoId)+"&token="+token+"&index="+chunkIndex, "video", fileToUpload, chunkIndex*CHUNK_SIZE , CHUNK_SIZE);
                         if(saveRes.get("status").equals("success")){
 
                             callback.onChunkUploaded(chunkIndex);
@@ -112,7 +115,9 @@ public class VideoUploader extends Thread{
         
         if(retry < MAX_RETRIES && !uploadStopped){
             
-            callback.onFinish();
+            // upload first part again
+            JSONObject saveRes = VideoUploader.uploadFileChunk("http://1e3d0ffd.ngrok.io/video/upload?id="+String.valueOf(RecordSessionController.videoId)+"&token="+token+"&index="+0, "video", fileToUpload, 0*CHUNK_SIZE , CHUNK_SIZE);
+            callback.onFinish(chunkIndex);
             System.out.println("file chunks upload done\n"+chunkIndex+" chunks uploaded");
         }else{
             callback.onFailed();
@@ -210,14 +215,17 @@ public class VideoUploader extends Thread{
 
          // read file and write it into form...
          int byteLengthToUpload = Math.min(chunkSize, bytesAvailable-startFrom);
-         byte[] bytesToUpload = new byte[byteLengthToUpload+20];
+         byte[] bytesToUpload = new byte[bytesAvailable];
          
          long bytesSkeeped = 0;
-         while((bytesSkeeped+=fileInputStream.skip(startFrom-bytesSkeeped)) < startFrom){};
+         //while((bytesSkeeped+=fileInputStream.skip(startFrom-bytesSkeeped)) < startFrom){};
          
-         fileInputStream.read(bytesToUpload, 0, byteLengthToUpload);
+         int read = fileInputStream.read(bytesToUpload, 0, bytesAvailable);
+            System.out.println("bytes available"+bytesAvailable);
          
-         dos.write(bytesToUpload, 0, byteLengthToUpload);
+         dos.write(bytesToUpload, startFrom, byteLengthToUpload);
+         
+         System.out.println("wrote from "+startFrom+" - length "+byteLengthToUpload);
          
          /*bytesRead = fileInputStream.read(buffer, startFrom, bufferSize);
 

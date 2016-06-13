@@ -7,8 +7,12 @@ package lecturus.main;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lecturus.controllers.ScreensController;
@@ -19,23 +23,20 @@ import lecturus.controllers.ScreensController;
  */
 public class Lec20 extends Application {
     
-    public static final String NEW_VIDEO_SCREEN = "newVideo.fxml"; 
-    public static final String WELCOME_SCREEN = "welcome.fxml"; 
-    public static final String RECORD_SCREEN = "recordSession.fxml"; 
-    
     @Override
     public void start(Stage stage) throws Exception {
-        final ScreensController mainContainer = new ScreensController(); 
-       mainContainer.loadScreen(Lec20.NEW_VIDEO_SCREEN, 
-                            "/lecturus/main/"+Lec20.NEW_VIDEO_SCREEN); 
-       mainContainer.loadScreen(Lec20.WELCOME_SCREEN, 
-                           "/lecturus/main/"+Lec20.WELCOME_SCREEN);
-       mainContainer.loadScreen(RECORD_SCREEN, 
-                           "/lecturus/main/"+RECORD_SCREEN);
+        final ScreensController mainContainer = new ScreensController(stage); 
+       mainContainer.loadScreen(ScreensController.NEW_VIDEO_SCREEN, 
+                            "/lecturus/main/"+ScreensController.NEW_VIDEO_SCREEN); 
+       mainContainer.loadScreen(ScreensController.WELCOME_SCREEN, 
+                           "/lecturus/views/"+ScreensController.WELCOME_SCREEN);
+       mainContainer.loadScreen(ScreensController.RECORD_SCREEN, 
+                           "/lecturus/main/"+ScreensController.RECORD_SCREEN);
        
-       mainContainer.setScreen(NEW_VIDEO_SCREEN); 
+       mainContainer.setScreen(ScreensController.NEW_VIDEO_SCREEN); 
 
         Group root = new Group(); 
+        
        root.getChildren().addAll(mainContainer); 
        Scene scene = new Scene(root); 
        stage.setScene(scene); 

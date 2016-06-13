@@ -16,6 +16,6 @@ import lecturus.controllers.ScreensController;
      //This method will allow the injection of the Parent ScreenPane
      public void setScreenParent(ScreensController screenPage); 
      public void onResume(); 
-     public void onStop(); 
+     public boolean onStop(); 
   } 
 

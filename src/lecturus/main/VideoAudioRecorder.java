@@ -139,9 +139,18 @@ public class VideoAudioRecorder{
     
     public int getVideoLength(){
         
-        return (int) (fTime - sTime / 1000000000.0);
+        return (int) TimeUnit.SECONDS.convert(fTime - sTime, TimeUnit.NANOSECONDS);
     }
 
+    public String getVideoLengthTimestring(){
+        
+        int totalSec = getVideoLength();
+        int min = totalSec/60;
+        int sec = totalSec-(min*60);
+        String time = ((min>9) ? "" : "0")+String.valueOf(min)+":"+((sec>9) ? "" : "0")+String.valueOf(sec);
+        return time;
+    }
+    
     /*public void toggleRecord(){
         if (!recording) {
           startRecording();

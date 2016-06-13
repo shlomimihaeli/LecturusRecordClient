@@ -12,8 +12,8 @@
          <children>
             <Label layoutX="48.0" layoutY="43.0" prefHeight="21.0" prefWidth="138.0" text="Welcome to lecturus" textAlignment="CENTER" />
             <Button layoutX="87.0" layoutY="157.0" onAction="#loginBtnAction"  mnemonicParsing="false" text="Login" />
-            <TextField layoutX="22.0" layoutY="74.0" promptText="Username" />
-            <PasswordField layoutX="22.0" layoutY="113.0" promptText="Password" />
+            <TextField layoutX="22.0" layoutY="74.0" promptText="Username" fx:id="usernameText" />
+            <PasswordField layoutX="22.0" layoutY="113.0" promptText="Password" fx:id="passwordText" />
          </children>
       </AnchorPane>
    </children>

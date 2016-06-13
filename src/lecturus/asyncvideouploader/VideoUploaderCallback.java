@@ -11,7 +11,7 @@ package lecturus.asyncvideouploader;
  */
 public abstract class VideoUploaderCallback {
     
-    public abstract void onFinish();
+    public abstract void onFinish(int numOfChunks);
     public abstract void onFailed();
     public abstract void onChunkUploaded(int chunkIndex);
 }

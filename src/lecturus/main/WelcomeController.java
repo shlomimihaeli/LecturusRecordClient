@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import lecturus.controllers.ScreensController;
 import lecturus.interfaces.ControlledScreen;
 
@@ -22,6 +24,12 @@ public class WelcomeController implements Initializable, ControlledScreen {
 
     ScreensController myController; 
     
+    @FXML
+    TextField usernameText;
+    
+    @FXML
+    PasswordField passwordText;
+    
     /**
      * Initializes the controller class.
      */
@@ -33,7 +41,26 @@ public class WelcomeController implements Initializable, ControlledScreen {
     @FXML
     private void loginBtnAction(ActionEvent evt){
         
-        myController.setScreen(Lec20.NEW_VIDEO_SCREEN);
+        try{
+        
+            UserSession s = UserSession.login(usernameText.getText(), passwordText.getText());
+            
+            if(s.getToken().length() > 0){
+                myController.setScreen(ScreensController.NEW_VIDEO_SCREEN);
+            }else{
+                throw new InvalidLogin();
+            }
+            
+        }catch(InvalidLogin e){
+            
+            // invalid login
+            myController.alert("Invalid login details");
+        }
+        catch(Exception e){
+            
+            // connection error
+            myController.alert("connection error, please try again");
+        }
     }
     
     @Override
@@ -47,8 +74,8 @@ public class WelcomeController implements Initializable, ControlledScreen {
     }
 
     @Override
-    public void onStop() {
-        
+    public boolean onStop() {
+        return true;
     }
     
     

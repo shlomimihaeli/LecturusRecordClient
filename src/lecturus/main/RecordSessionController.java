@@ -33,13 +33,17 @@ import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javax.activation.DataSource;
 import javax.media.CaptureDeviceInfo;
 import javax.media.CaptureDeviceManager;
@@ -76,6 +80,10 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     private ImageView videoDisplayImageView;
     @FXML
     private Hyperlink videoEditLink;
+    @FXML
+    private Text recordTimer;
+    @FXML
+    Button editVideoOnlineBtn;
     
     private Thread recordThead;
     private int frameIndex = 0;
@@ -98,6 +106,7 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     boolean recordingSessionNotStarted = true;
     boolean isDisplaying = false;
     VideoUploader videoUploader;
+    UserSession session;
     
     /**
      * Initializes the controller class.
@@ -117,12 +126,28 @@ public class RecordSessionController implements Initializable, ControlledScreen 
       
         isDisplaying = true;
         
-        videoUploader = new VideoUploader(new VideoUploaderCallback() {
+        try{
+            
+            session = UserSession.getSession();
+            recordingSessionNotStarted = true;
+            recordBtn.setVisible(true);
+            recordBtn.setText("start recording");
+            
+        }catch(Exception e){
+            
+            myController.setScreen(ScreensController.WELCOME_SCREEN);
+            return;
+        }
+        
+        myController.showLoader(true, "setup video background uploader thread");
+        
+        videoUploader = new VideoUploader(session.getToken(), new VideoUploaderCallback() {
             @Override
-            public void onFinish() {
+            public void onFinish(int numOfChunks) {
                 System.out.println("bg upload finished");
                 
-                // upload is done, send end video session request and retrive
+                // call video end
+                closeVideoSession(numOfChunks);
             }
 
             @Override
@@ -136,8 +161,11 @@ public class RecordSessionController implements Initializable, ControlledScreen 
             }
         });
         
+        myController.showLoader(true, "setup camera and sound devices");
+        
         var = initVideoRecorder();
         
+        myController.showLoader(false);
         
        //mPlayer.setMediaPlayer(player);
        
@@ -158,8 +186,13 @@ public class RecordSessionController implements Initializable, ControlledScreen 
                                    
                                    Image displayImage = SwingFXUtils.toFXImage(bi, null);
                                     videoDisplayImageView.setImage(displayImage);
+                                    
+                                    //update 
+                                    recordTimer.setText(var.getVideoLengthTimestring());
+                                    
                                }catch(Exception e){
                                    
+                                   e.printStackTrace();
                                }
 
                                try{
@@ -177,19 +210,30 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     }
 
     @Override
-    public void onStop() {
+    public boolean onStop() {
        
-        videoUploader = null;
-        isDisplaying = false;
-        if(var != null) {
+        if(var.isRecording()){
             
-            try{
-                var.stopRecording();
-                var = null;
-            }catch(Exception e){
-                
+            
+            //show in middle of recording
+            return false;
+            
+        }else{
+            
+            videoUploader = null;
+            isDisplaying = false;
+            if(var != null) {
+
+                try{
+                    var.stopRecording();
+                    var = null;
+                }catch(Exception e){
+
+                }
+
             }
             
+            return true;
         }
     }
     
@@ -202,17 +246,6 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         
     }
     
-    private String getRecordCommand(){
-        
-        /**
-         * vlc dshow:// :v4l2-width=320 :v4l2-height=240 :display :sout-keep --sout "#transcode{vcodec=theora,acodec=vorbis,vb=800,ab=128} :display :standard{access=file,dst=C:\Users\shnizle\Documents\Lecturus\capture.ogg}"
-         */
-        //return "\"c:/Program Files (x86)/VideoLAN/VLC/vlc.exe\" -vvv dshow:// --sout=#transcode{vcodec=mp2v,fps=60,width=1080,acodec=mp2a,scale=1,channels=2,deinterlace,audio-sync}:standard{access-file,mux=ps,dst=\""+getLecturusStorageFolder()+"/123344.avi\"}";
-        //return "\"c:/Program Files (x86)/VideoLAN/VLC/vlc.exe\" dshow:// --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:duplicate{dst=http{dst=:3333/http://localhost},dst=\""+getLecturusStorageFolder()+"/test8.mpg\"} :sout-keep";
-        //return "\"c:/Program Files (x86)/VideoLAN/VLC/vlc.exe\" dshow:// --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:duplicate{dst=\""+getLecturusStorageFolder()+"/test8.avi\"}";
-        return "\"c:/Program Files (x86)/VideoLAN/VLC/vlc.exe\" dshow:// --sout=#transcode{vcodec=mp2v,vb=1024,fps=30,width=320,acodec=mp2a,ab=128,scale=1,channels=2,deinterlace,audio-sync}:standard{access=file,mux=ps,dst=\""+getLecturusStorageFolder()+"\\Output.mpg\"}";
-    }
-    
     @FXML
     private void openVideoEditWebApplication(){
         
@@ -221,6 +254,12 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         }catch(Exception e){
             myController.alert("failed opening link");
         }
+    }
+    
+    @FXML
+    private void gotoNewVideoScreen(){
+        
+        myController.setScreen(ScreensController.NEW_VIDEO_SCREEN);
     }
     
     @FXML
@@ -304,15 +343,24 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         return false;
     }
     
-    public void closeVideoSession(){
+    public void closeVideoSession(int numOfChunks){
         
         try{
                 // close video and prepare it for editing
-                JSONObject prepareForEditRes = HttpUtills.restGetAction("http://lecturus2.herokuapp.com/video/end?id="+String.valueOf(videoId)+"&length="+String.valueOf(var.getVideoLength()));
+                JSONObject prepareForEditRes = HttpUtills.restGetAction("http://1e3d0ffd.ngrok.io/video/end?id="+String.valueOf(videoId)+"&parts="+numOfChunks+"&length="+String.valueOf(var.getVideoLength())+"&token="+session.getToken());
                 if(prepareForEditRes.get("status").equals("success")){
                     
-                    videoEditLink.setVisible(true);
-                    videoEditLink.setText(remoteVideoURL);
+                    JSONObject data = (JSONObject) prepareForEditRes.get("data");
+                    
+                    remoteVideoURL = (String) data.get("videoUrl");
+                    
+                    editVideoOnlineBtn.setVisible(true);
+                    editVideoOnlineBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent t) {
+                           openVideoEditWebApplication();
+                        }
+                    });
                     
                     myController.alert("video uploaded and prepared for edit successfully");
                     
