@@ -9,7 +9,7 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00aff0;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lecturus.main.NewVideoController">
    <children>
       <Label alignment="CENTER" contentDisplay="TOP" layoutX="184.0" layoutY="72.0" prefHeight="21.0" prefWidth="232.0" style="-fx-text-fill: #fff;" text="Create new video session" />
-      <Button layoutX="269.0" layoutY="258.0" mnemonicParsing="false" onAction="#createNewVideo" style="-fx-background-color: #0a619e; -fx-text-fill: #fff;" text="Create" />
+      <Button layoutX="269.0" fx:id="newViewBtn" layoutY="258.0" mnemonicParsing="false" onAction="#createNewVideo" style="-fx-background-color: #0a619e; -fx-text-fill: #fff;" text="Create" />
       <TextField fx:id="lectureTitle" layoutX="207.0" layoutY="108.0" promptText="Lecture title" />
       <ComboBox fx:id="courseCb" disable="true" layoutX="207.0" layoutY="188.0" prefHeight="31.0" prefWidth="187.0" promptText="Select Course" style="-fx-background-color: #fff; -fx-border-radius: 0;" />
       <ComboBox fx:id="collegeCb" layoutX="207.0" layoutY="148.0" prefHeight="31.0" prefWidth="187.0" promptText="Select College" style="-fx-background-color: #fff; -fx-border-radius: 0px;" />

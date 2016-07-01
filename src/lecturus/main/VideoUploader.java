@@ -83,7 +83,7 @@ public class VideoUploader extends Thread{
             if(chunkIndex * CHUNK_SIZE < fileLength && ((chunkIndex+1)*CHUNK_SIZE < fileLength || fileCloded)){
                 
                     try{
-                        JSONObject saveRes = VideoUploader.uploadFileChunk("http://1e3d0ffd.ngrok.io/video/upload?id="+String.valueOf(RecordSessionController.videoId)+"&token="+token+"&index="+chunkIndex, "video", fileToUpload, chunkIndex*CHUNK_SIZE , CHUNK_SIZE);
+                        JSONObject saveRes = VideoUploader.uploadFileChunk(Lec20.serverURL+"/video/upload?id="+String.valueOf(RecordSessionController.videoId)+"&token="+token+"&index="+chunkIndex, "video", fileToUpload, chunkIndex*CHUNK_SIZE , CHUNK_SIZE);
                         if(saveRes.get("status").equals("success")){
 
                             callback.onChunkUploaded(chunkIndex);
@@ -116,7 +116,7 @@ public class VideoUploader extends Thread{
         if(retry < MAX_RETRIES && !uploadStopped){
             
             // upload first part again
-            JSONObject saveRes = VideoUploader.uploadFileChunk("http://1e3d0ffd.ngrok.io/video/upload?id="+String.valueOf(RecordSessionController.videoId)+"&token="+token+"&index="+0, "video", fileToUpload, 0*CHUNK_SIZE , CHUNK_SIZE);
+            JSONObject saveRes = VideoUploader.uploadFileChunk(Lec20.serverURL+"/video/upload?id="+String.valueOf(RecordSessionController.videoId)+"&token="+token+"&index="+0, "video", fileToUpload, 0*CHUNK_SIZE , CHUNK_SIZE);
             callback.onFinish(chunkIndex);
             System.out.println("file chunks upload done\n"+chunkIndex+" chunks uploaded");
         }else{

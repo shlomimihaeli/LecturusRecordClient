@@ -252,6 +252,11 @@ return dialogStage;
         
     }
     
+    public StatusBar getStatusBar(){
+        
+        return sBar;
+    }
+    
     public void close(){
         
         mainWindow.close();

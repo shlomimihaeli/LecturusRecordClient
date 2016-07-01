@@ -7,6 +7,8 @@ package lecturus.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -38,15 +40,29 @@ public class StatusBar implements Initializable{
     
     public void showLoader(boolean show, String status){
         
+        retryButton.setVisible(false);
         statusBarText.setText(status);
         spinner.setVisible(show);
         
     }
     
-     public void retryMessage(boolean show, String status){
+     public void retryMessage(boolean show, String status, final EventHandler<Event> onClick){
         
         statusBarText.setText(status);
         spinner.setVisible(show);
+        
+        retryButton.setVisible(true);
+        
+        retryButton.setOnMouseClicked(new EventHandler<Event>() {
+            @Override
+            public void handle(Event t) {
+                
+                // hide button
+                retryButton.setVisible(false);
+                
+                onClick.handle(t);
+            }
+        });
         
     }
     
@@ -55,5 +71,6 @@ public class StatusBar implements Initializable{
         showLoader(show, "");
         
     }
+    
     
 }

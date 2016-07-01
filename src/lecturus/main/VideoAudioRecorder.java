@@ -181,6 +181,7 @@ public class VideoAudioRecorder{
           //imw.flush();
           if(imw != null) imw.close();
           if(webcam != null) webcam.close();
+          if(aline != null) aline.close();
     }
     
    /* public void keyPressed() {
@@ -209,6 +210,7 @@ public class VideoAudioRecorder{
         aline = (TargetDataLine) AudioSystem.getLine(info);
         aline.open(audioFormat);
         aline.start();
+        
         //println("audio line");
       }
       catch (LineUnavailableException e)

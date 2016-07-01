@@ -31,6 +31,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,6 +43,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javax.activation.DataSource;
@@ -84,6 +86,8 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     private Text recordTimer;
     @FXML
     Button editVideoOnlineBtn;
+    @FXML
+    Pane recordStatusPane;
     
     private Thread recordThead;
     private int frameIndex = 0;
@@ -125,13 +129,15 @@ public class RecordSessionController implements Initializable, ControlledScreen 
     public void onResume() {
       
         isDisplaying = true;
+        recordBtn.setVisible(false);
+        recordStatusPane.setVisible(false);
+        editVideoOnlineBtn.setVisible(false);
         
         try{
             
             session = UserSession.getSession();
             recordingSessionNotStarted = true;
-            recordBtn.setVisible(true);
-            recordBtn.setText("start recording");
+            
             
         }catch(Exception e){
             
@@ -143,16 +149,30 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         
         videoUploader = new VideoUploader(session.getToken(), new VideoUploaderCallback() {
             @Override
-            public void onFinish(int numOfChunks) {
+            public void onFinish(final int numOfChunks) {
                 System.out.println("bg upload finished");
                 
-                // call video end
-                closeVideoSession(numOfChunks);
+                Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            myController.showLoader(true, "Video Uploaded successfully, preparing for edit");
+                           // call video end
+                            closeVideoSession(numOfChunks);
+                        }
+                });
+               
+                
             }
 
             @Override
             public void onFailed() {
-                System.err.println("bg upload failed");
+                Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            myController.showLoader(false, "Video upload failed");
+                           
+                        }
+                });
             }
 
             @Override
@@ -162,10 +182,7 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         });
         
         myController.showLoader(true, "setup camera and sound devices");
-        
-        var = initVideoRecorder();
-        
-        myController.showLoader(false);
+      
         
        //mPlayer.setMediaPlayer(player);
        
@@ -176,6 +193,23 @@ public class RecordSessionController implements Initializable, ControlledScreen 
                         @Override
                         public void run() {
 
+                            try{
+                            var = initVideoRecorder();
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                            
+                             Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                  myController.showLoader(false);
+                                  recordBtn.setVisible(true);
+                                  recordStatusPane.setVisible(true);
+                                    recordBtn.setText("start recording");
+                                }
+                            });
+                             
+                            
                            while(isDisplaying){
 
                                BufferedImage bi = var.draw();
@@ -304,7 +338,9 @@ public class RecordSessionController implements Initializable, ControlledScreen 
                 videoUploader.setFileHasBeenClosed();
                 
                 // save file and show link, stop recording
-                recordBtn.setVisible(false);
+                recordStatusPane.setVisible(false);
+                
+                myController.showLoader(true, "Finishing upload");
             }
             
             
@@ -347,7 +383,7 @@ public class RecordSessionController implements Initializable, ControlledScreen 
         
         try{
                 // close video and prepare it for editing
-                JSONObject prepareForEditRes = HttpUtills.restGetAction("http://1e3d0ffd.ngrok.io/video/end?id="+String.valueOf(videoId)+"&parts="+numOfChunks+"&length="+String.valueOf(var.getVideoLength())+"&token="+session.getToken());
+                JSONObject prepareForEditRes = HttpUtills.restGetAction(Lec20.serverURL+"/video/end?id="+String.valueOf(videoId)+"&parts="+numOfChunks+"&length="+String.valueOf(var.getVideoLength())+"&token="+session.getToken());
                 if(prepareForEditRes.get("status").equals("success")){
                     
                     JSONObject data = (JSONObject) prepareForEditRes.get("data");
@@ -362,17 +398,18 @@ public class RecordSessionController implements Initializable, ControlledScreen 
                         }
                     });
                     
-                    myController.alert("video uploaded and prepared for edit successfully");
+                    myController.showLoader(false);
                     
-                    // show edit button
-                    
+                    return;
                 }
                 
             }catch(Exception e){
                 
-                myController.alert("video preparation failed");
-                e.printStackTrace();
+                    e.printStackTrace();
             }
+        
+        myController.showLoader(false,"video preparation failed");
+            
     }
     
     private void stopRecording(){

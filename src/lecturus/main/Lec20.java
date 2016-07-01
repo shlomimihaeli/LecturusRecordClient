@@ -23,6 +23,8 @@ import lecturus.controllers.ScreensController;
  */
 public class Lec20 extends Application {
     
+    public static final String serverURL = "http://52.23.174.169:3000";
+    
     @Override
     public void start(Stage stage) throws Exception {
         final ScreensController mainContainer = new ScreensController(stage); 

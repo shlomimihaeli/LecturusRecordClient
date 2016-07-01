@@ -55,7 +55,7 @@ public class Course extends DBModel<Course> implements ComboBoxItem{
   public static List list(int collegeId, final RestModelQueryResponse callResponse) throws Exception{
         
         final List<Course> list = new ArrayList<Course>();
-        HttpUtills.asyncQueryDataList(model, "get","college_id="+String.valueOf(collegeId), new RestCallResponse() {
+        HttpUtills.asyncQueryDataList(model, "get","filters[college_id]="+String.valueOf(collegeId), new RestCallResponse() {
             @Override
             public void done(JSONObject jo) {
                 

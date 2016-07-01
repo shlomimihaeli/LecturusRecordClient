@@ -26,33 +26,33 @@ public class HttpUtills {
     
     private static final boolean debug = true;
     
-    public static Thread asyncQueryDataList(String model, String action, String filters, RestCallResponse callResponse) throws ParseException, Exception{
+    public static Thread asyncQueryDataList(String model, String action, String filters, RestCallResponse callResponse) throws NoUserSessionException{
         
-        return asyncRestGetAction("http://1e3d0ffd.ngrok.io/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true")+"&"+filters, callResponse);
+        return asyncRestGetAction(Lec20.serverURL+"/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true")+"&"+filters, callResponse);
         
     }
     
     public static JSONArray queryDataList(String model, String action, String filters) throws ParseException, Exception{
         
-        return restGetActionForDataList("http://1e3d0ffd.ngrok.io/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true")+"&"+filters);
+        return restGetActionForDataList(Lec20.serverURL+"/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true")+"&"+filters);
         
     }
     
     public static JSONArray queryDataList(String model, String action) throws ParseException, Exception{
         
-        return restGetActionForDataList("http://1e3d0ffd.ngrok.io/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true"));
+        return restGetActionForDataList(Lec20.serverURL+"/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true"));
         
     }
     
      public static JSONObject queryData(String model, String action) throws ParseException, Exception{
         
-        return restGetActionForData("http://1e3d0ffd.ngrok.io/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true"));
+        return restGetActionForData(Lec20.serverURL+"/"+model+"/"+action+"?"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true"));
         
     }
     
     public static JSONObject queryData(String model, String action, String getParams) throws ParseException, Exception{
         
-        return restGetActionForData("http://1e3d0ffd.ngrok.io/"+model+"/"+action+"?"+getParams+"&"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true"));
+        return restGetActionForData(Lec20.serverURL+"/"+model+"/"+action+"?"+getParams+"&"+((!debug) ? "token="+UserSession.getSession().getToken() : "debug=true"));
         
     }
     
@@ -80,7 +80,7 @@ public class HttpUtills {
         }
     }
     
-    public static Thread asyncRestGetAction(final String url, final RestCallResponse callResponse) throws ParseException, Exception{
+    public static Thread asyncRestGetAction(final String url, final RestCallResponse callResponse){
         
         Thread t = new Thread(){
             

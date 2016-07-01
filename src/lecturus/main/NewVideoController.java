@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import lecturus.controllers.ScreensController;
@@ -19,6 +22,7 @@ import lecturus.interfaces.ControlledScreen;
 import lecturus.model.College;
 import lecturus.model.Course;
 import lecturus.model.RestModelQueryResponse;
+import lecturus.rest.RestCallResponse;
 import org.json.simple.JSONObject;
 
 /**
@@ -40,6 +44,9 @@ public class NewVideoController implements Initializable, ControlledScreen {
     @FXML
     ComboBox<Course> courseCb;
     
+    @FXML
+    Button newViewBtn;
+    
     /**
      * Initializes the controller class.
      */
@@ -56,7 +63,8 @@ public class NewVideoController implements Initializable, ControlledScreen {
            
            token = UserSession.getSession().getToken();
            
-           screenPage.showLoader(true, "Loading colleges");
+           // disable button
+           newViewBtn.setDisable(true);
            
            /**
             * clear inputs
@@ -70,26 +78,60 @@ public class NewVideoController implements Initializable, ControlledScreen {
                        courseCb.getItems().clear();
            
            // get list of colleges
-           College.list(new RestModelQueryResponse() {
-               @Override
-               public void done(List models) {
-                   
-                    collegeCb.getItems().addAll(models);
-                    screenPage.showLoader(false, "done loading colleges");
-               }
-
-               @Override
-               public void failed() {
-                  screenPage.showLoader(false, "failed loading colleges");
-               }
-           });
+           loadCollegeList();
            
            
           collegeCb.valueProperty().addListener(new ChangeListener() {
                @Override
                public void changed(ObservableValue ov, Object t, Object t1) {
                   
-                   try{
+                   loadCourseList();
+               }
+           });
+           
+       }catch(Exception e){
+           
+           e.printStackTrace();
+           screenPage.setScreen(ScreensController.WELCOME_SCREEN);
+       }
+        
+    }
+    
+    private void loadCollegeList(){
+        
+        screenPage.showLoader(true, "Loading colleges");
+        
+        try{
+        
+            College.list(new RestModelQueryResponse() {
+                   @Override
+                   public void done(List models) {
+
+                        collegeCb.getItems().addAll(models);
+                        screenPage.showLoader(false, "done loading colleges");
+                   }
+
+                   @Override
+                   public void failed() {
+                      screenPage.getStatusBar().retryMessage(false, "failed loading colleges", new EventHandler<Event>() {
+                          @Override
+                          public void handle(Event t) {
+                                loadCollegeList();
+                          }
+                      }
+                      );
+                   }
+               });
+            
+        }catch(Exception e){
+            
+            screenPage.setScreen(ScreensController.WELCOME_SCREEN);
+        }
+    }
+    
+    private void loadCourseList(){
+        
+        try{
                         screenPage.showLoader(true, "Loading courses");
                         
                        Course.list(((College) collegeCb.getValue()).getID(), new RestModelQueryResponse() {
@@ -104,27 +146,31 @@ public class NewVideoController implements Initializable, ControlledScreen {
                                  courseCb.setDisable(false);
 
                                  screenPage.showLoader(false);
+                                 
+                                 courseCb.valueProperty().addListener(new ChangeListener() {
+                                    @Override
+                                    public void changed(ObservableValue ov, Object t, Object t1) {
+
+                                        newViewBtn.setDisable(false);
+                                    }
+                                });
                             }
 
                             @Override
                             public void failed() {
-                                screenPage.showLoader(false, "failed loading courses");
+                                screenPage.getStatusBar().retryMessage(false, "failed loading courses",  new EventHandler<Event>() {
+                                    @Override
+                                    public void handle(Event t) {
+                                        loadCourseList();
+                                    }
+                                });
                             }
                         });
                        
                         
                    }catch(Exception e){
-                       
+                       screenPage.setScreen(ScreensController.WELCOME_SCREEN);
                    }
-               }
-           });
-           
-       }catch(Exception e){
-           
-           e.printStackTrace();
-           screenPage.setScreen(ScreensController.WELCOME_SCREEN);
-       }
-        
     }
 
     @Override
@@ -140,20 +186,49 @@ public class NewVideoController implements Initializable, ControlledScreen {
         
         screenPage.showLoader(true, "Creating new video session");
         
+        // validate input
+        if(lectureTitle.getText().length() < 5){
+            
+            screenPage.showLoader(false, "please insert a title of at least 5 characters");
+            return;
+        }else if(courseCb.getValue() == null){
+            
+            screenPage.showLoader(false, "please select a course");
+            return;
+        }
+        
         try{
-            JSONObject res = HttpUtills.restGetAction("http://1e3d0ffd.ngrok.io/video/new?title="+lectureTitle.getText()+"&course_id="+courseCb.getValue().getID()+"&token="+token);
-            if(res.get("status").equals("success")){
-                
-                JSONObject data = (JSONObject) res.get("data");
-                RecordSessionController.videoId = ((Long) data.get("id")).intValue();
-                this.screenPage.setScreen(ScreensController.RECORD_SCREEN);
-            }
+            
+            screenPage.showLoader(true, "creating new video session");
+            
+            HttpUtills.asyncRestGetAction(Lec20.serverURL+"/video/new?title="+lectureTitle.getText()+"&course_id="+courseCb.getValue().getID()+""+token,
+                    
+                    new RestCallResponse() {
+                @Override
+                public void done(JSONObject res) {
+                    
+                    screenPage.showLoader(false);
+                    
+                   if(res.get("status").equals("success")){
+
+                        JSONObject data = (JSONObject) res.get("data");
+                        RecordSessionController.videoId = ((Long) data.get("id")).intValue();
+                        screenPage.setScreen(ScreensController.RECORD_SCREEN);
+                    }
+                }
+
+                @Override
+                public void failed() {
+                    
+                    screenPage.showLoader(false,"failed creating new video session, please try again");
+                }
+            });
+            
         }catch(Exception e){
             
             e.printStackTrace();
         }
         
-        screenPage.showLoader(false);
     }
 
     @Override
