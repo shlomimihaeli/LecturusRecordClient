@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import java.awt.*;
 import java.io.File;
 import javax.sound.sampled.*;
-import static lecturus.main.RecordSessionController.videoId;
+import lecturus.controllers.RecordSessionController;
 
 public class VideoAudioRecorder{
 
@@ -85,7 +85,7 @@ public class VideoAudioRecorder{
 		webcam.open(true);
     }
     
-    BufferedImage draw() {
+    public BufferedImage draw() {
 
 
         if (recording) {

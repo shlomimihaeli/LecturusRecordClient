@@ -48,8 +48,11 @@ public class LoginController implements Initializable, ControlledScreen {
                 main.setScreen(ScreensController.NEW_VIDEO_SCREEN);
                 
             }catch(Exception e){
-                // login error
+                
+                main.showLoader(false, "Login error");
             }
+        }else{
+            main.showLoader(false, "Please enter username and password");
         }
     }
 

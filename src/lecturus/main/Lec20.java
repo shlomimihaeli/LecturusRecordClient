@@ -29,13 +29,13 @@ public class Lec20 extends Application {
     public void start(Stage stage) throws Exception {
         final ScreensController mainContainer = new ScreensController(stage); 
        mainContainer.loadScreen(ScreensController.NEW_VIDEO_SCREEN, 
-                            "/lecturus/main/"+ScreensController.NEW_VIDEO_SCREEN); 
+                            "/lecturus/views/"+ScreensController.NEW_VIDEO_SCREEN); 
        mainContainer.loadScreen(ScreensController.WELCOME_SCREEN, 
                            "/lecturus/views/"+ScreensController.WELCOME_SCREEN);
        mainContainer.loadScreen(ScreensController.RECORD_SCREEN, 
-                           "/lecturus/main/"+ScreensController.RECORD_SCREEN);
+                           "/lecturus/views/"+ScreensController.RECORD_SCREEN);
        
-       mainContainer.setScreen(ScreensController.NEW_VIDEO_SCREEN); 
+       mainContainer.setScreen(ScreensController.WELCOME_SCREEN); 
 
         Group root = new Group(); 
         

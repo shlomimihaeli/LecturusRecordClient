@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Lec.2.0.jar" size="79961" download="eager" />
+    <jar href="Lec.2.0.jar" size="85025" download="eager" />
     <jar href="lib/bridj-0.6.2.jar" size="878674" download="eager" />
     <jar href="lib/customizer.jar" size="71644" download="eager" />
     <jar href="lib/jmf.jar" size="1904171" download="eager" />

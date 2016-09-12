@@ -24,7 +24,7 @@ import org.json.simple.parser.ParseException;
  */
 public class HttpUtills {
     
-    private static final boolean debug = true;
+    private static final boolean debug = false;
     
     public static Thread asyncQueryDataList(String model, String action, String filters, RestCallResponse callResponse) throws NoUserSessionException{
         

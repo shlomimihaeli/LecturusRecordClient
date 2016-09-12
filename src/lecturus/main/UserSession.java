@@ -28,14 +28,14 @@ public class UserSession {
     }
     
     public static UserSession getSession() throws NoUserSessionException{
-         return new UserSession("&debug=true");
-       // if(session == null) throw new NoUserSessionException();
-       // return session;
+        // return new UserSession("&debug=true");
+        if(session == null) throw new NoUserSessionException();
+        return session;
     }
     
     public static UserSession login(String username, String password) throws ParseException, Exception{
         
-        JSONObject loginRes = HttpUtills.restGetActionForData("http://lecturus2.herokuapp.com/user/login?email="+username+"&password="+password);
+        JSONObject loginRes = HttpUtills.restGetActionForData(Lec20.serverURL+"/user/login?email="+username+"&password="+password);
              
              session = new UserSession((String)loginRes.get("token"));
          
@@ -46,4 +46,3 @@ public class UserSession {
 }
 
 class NoUserSessionException extends Exception{}
-class InvalidLogin extends Exception{}

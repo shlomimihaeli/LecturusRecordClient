@@ -45,7 +45,7 @@ import lecturus.interfaces.ControlledScreen;
 public class ScreensController extends BorderPane{ 
     
     public static final String NEW_VIDEO_SCREEN = "newVideo.fxml"; 
-    public static final String WELCOME_SCREEN = "login.fxml"; 
+    public static final String WELCOME_SCREEN = "welcome.fxml"; 
     public static final String RECORD_SCREEN = "recordSession.fxml"; 
     
     private HashMap<String, Node> screens = new HashMap<>();
